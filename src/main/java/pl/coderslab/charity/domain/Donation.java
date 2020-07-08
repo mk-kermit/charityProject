@@ -1,9 +1,7 @@
 package pl.coderslab.charity.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import pl.coderslab.charity.util.validation.AddValidator;
 import pl.coderslab.charity.util.validation.EditValidator;
 
@@ -21,49 +19,50 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "donations")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Donation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Column(name = "donation_quantity")
     @NotEmpty(groups = {AddValidator.class, EditValidator.class})
     @NotNull(groups = {AddValidator.class, EditValidator.class})
-    private int quantity;
+    int quantity;
 
     @Column(name = "donation_street")
     @NotEmpty(groups = {AddValidator.class, EditValidator.class})
     @NotNull(groups = {AddValidator.class, EditValidator.class})
-    private String street;
+    String street;
 
     @Column(name = "donation_city")
     @NotEmpty(groups = {AddValidator.class, EditValidator.class})
     @NotNull(groups = {AddValidator.class, EditValidator.class})
-    private String city;
+    String city;
 
     @Column(name = "donation_zipcode")
     @NotEmpty(groups = {AddValidator.class, EditValidator.class})
     @NotNull(groups = {AddValidator.class, EditValidator.class})
-    private String zipCode;
+    String zipCode;
 
     @Column(name = "donation_pickup_date")
     @NotEmpty(groups = {AddValidator.class, EditValidator.class})
     @NotNull(groups = {AddValidator.class, EditValidator.class})
-    private LocalDate pickUpDate;
+    LocalDate pickUpDate;
 
     @Column(name = "donation_pickup_time")
     @NotEmpty(groups = {AddValidator.class, EditValidator.class})
     @NotNull(groups = {AddValidator.class, EditValidator.class})
-    private LocalTime pickUpTime;
+    LocalTime pickUpTime;
 
     @Column(name = "donation_pickup_comment")
     @NotEmpty(groups = {AddValidator.class, EditValidator.class})
     @NotNull(groups = {AddValidator.class, EditValidator.class})
-    private int pickUpComment;
+    String pickUpComment;
 
     @ManyToOne
-    private Institution institution;
+    Institution institution;
 
     @ManyToMany
-    private List<Category> categories = new ArrayList<>();
+    List<Category> categories = new ArrayList<>();
 }

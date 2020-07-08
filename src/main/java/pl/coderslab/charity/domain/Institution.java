@@ -1,9 +1,7 @@
 package pl.coderslab.charity.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import pl.coderslab.charity.util.validation.AddValidator;
 import pl.coderslab.charity.util.validation.EditValidator;
 
@@ -17,19 +15,20 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Entity
 @Table(name = "institutions")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Institution {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Column(name = "institution_name")
     @NotNull(groups = {AddValidator.class, EditValidator.class})
     @NotEmpty(groups = {AddValidator.class, EditValidator.class})
-    private String name;
+    String name;
 
     @Column(name = "institution_description")
     @NotNull(groups = {AddValidator.class, EditValidator.class})
     @NotEmpty(groups = {AddValidator.class, EditValidator.class})
-    private String description;
+    String description;
 
 }
