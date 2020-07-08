@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
 </head>
 <body>
-<%@include file="/WEB-INF/views/includes/header.jsp"%>
+<%@include file="/WEB-INF/views/includes/header.jsp" %>
 <section class="stats">
     <div class="container container--85">
         <div class="stats--item">
@@ -83,36 +83,26 @@
             Możesz sprawdzić czym się zajmują.</p>
 
         <ul class="help--slides-items">
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Dbam o Zdrowie"</div>
-                    <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
-                </div>
-
-                <div class="col">
-                    <div class="title">Fundacja "A kogo"</div>
-                    <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
-                </div>
-            </li>
-
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja “Dla dzieci"</div>
-                    <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
-                </div>
-                <div class="col">
-                    <div class="title">Fundacja “Bez domu”</div>
-                    <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-                </div>
-
-            </li>
-
+            <c:forEach items="${institutions}" step="2" var="institution" varStatus="status">
+                <li>
+                    <div class="col">
+                        <div class="title">${institution.name}</div>
+                        <div class="subtitle">${institution.description}</div>
+                    </div>
+                    <c:if test="${institutions.size() != institution.id}">
+                        <div class="col">
+                            <div class="title">${institutions.get(status.index + 1).name}</div>
+                            <div class="subtitle">${institutions.get(status.index + 1).description}</div>
+                        </div>
+                    </c:if>
+                </li>
+            </c:forEach>
         </ul>
     </div>
 
 </section>
 
-<%@include file="/WEB-INF/views/includes/footer.jsp"%>
+<%@include file="/WEB-INF/views/includes/footer.jsp" %>
 
 <script src="<c:url value="resources/js/app.js"/>"></script>
 </body>

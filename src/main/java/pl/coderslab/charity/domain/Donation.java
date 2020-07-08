@@ -64,6 +64,6 @@ public class Donation {
     @ManyToOne
     private Institution institution;
 
-    @OneToMany
+    @ManyToMany
     private List<Category> categories = new ArrayList<>();
 }
