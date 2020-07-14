@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
 </head>
 <body>
-<%@include file="/WEB-INF/views/includes/header.jsp" %>
+<%@ include file="includes/header.jsp" %>
 <section class="stats">
     <div class="container container--85">
         <div class="stats--item">
@@ -101,7 +101,7 @@
 
 </section>
 
-<%@include file="/WEB-INF/views/includes/footer.jsp" %>
+<%@ include file="/WEB-INF/views/includes/footer.jsp" %>
 
 <script src="<c:url value="resources/js/app.js"/>"></script>
 </body>

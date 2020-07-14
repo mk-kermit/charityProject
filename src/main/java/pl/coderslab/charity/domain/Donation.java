@@ -2,6 +2,7 @@ package pl.coderslab.charity.domain;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.util.validation.AddValidator;
 import pl.coderslab.charity.util.validation.EditValidator;
 
@@ -48,6 +49,7 @@ public class Donation {
     @Column(name = "donation_pickup_date")
     @NotEmpty(groups = {AddValidator.class, EditValidator.class})
     @NotNull(groups = {AddValidator.class, EditValidator.class})
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate pickUpDate;
 
     @Column(name = "donation_pickup_time")
