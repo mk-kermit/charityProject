@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
      */
     updateForm() {
       this.$step.innerText = this.currentStep;
-
+      var donationForm = document.querySelector("form");
       // TODO: Validation
 
       this.slides.forEach(slide => {
@@ -162,8 +162,43 @@ document.addEventListener("DOMContentLoaded", function() {
 
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
+      if (this.currentStep == 1){
+        for (let i = 0; i < elements.length; i++){
+          elements[i].parentNode.removeChild(elements[i]);
+          i-=1;
+        }
+      }
 
-      // TODO: get data from inputs and show them in summary
+      if (this.currentStep == 5){
+        var categories = new Array();
+        donationForm.elements["categoriers"].forEach(
+            function (element) {
+              if(element.checked){
+                categories.push(element.parentNode.querySelector(".description").innerText);
+              }
+            }
+        )
+      };
+      document.querySelector("#categoriesOut").innerText = donationForm.elements["quantity"].value + " worki "
+      + categories.join("; ");
+
+      var institution;
+      donationForm.elements("institution").forEach(
+          function (element) {
+            if(element.checked){
+              institution = element.parentNode.querySelector(".title").innerText;
+            }
+          }
+      );
+      document.querySelector("#institutionOut").innerText = "Dla " + institution;
+      document.querySelector("#pickUpDateOut").innerText = donationForm.elements["pickUpDate"].value;
+      document.querySelector("#pickUpCommentOut").innerText = donationForm.elements["pickUpComment"].value;
+      document.querySelector("#streetOut").innerText = donationForm.elements["street"].value;
+      document.querySelector("#cityOut").innerText = donationForm.elements["city"].value;
+      document.querySelector("#zipCodeOut").innerText = donationForm.elements["zipCode"].value;
+
+      document.querySelector("#phoneNumberOut").innerText = donationForm.elements["phoneNumber"].value;
+      document.querySelector("#pickUpTimeOut").innerText = donationForm.elements["pickUpTime"].value;
     }
 
   }

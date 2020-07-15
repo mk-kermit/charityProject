@@ -22,7 +22,8 @@ public class Category {
     Long id;
 
     @Column(name = "category_name", unique = true, length = 80)
-    @NotEmpty(groups = {AddValidator.class, EditValidator.class})
-    @NotNull(groups = {AddValidator.class, EditValidator.class})
+//    @NotEmpty(groups = {AddValidator.class, EditValidator.class})
+//    @NotNull(groups = {AddValidator.class, EditValidator.class})
     String name;
+
 }
