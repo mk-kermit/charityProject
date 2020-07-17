@@ -38,14 +38,14 @@
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form:form action="form-confirmation.jsp" method="post" modelAttribute="donation">
+        <form:form method="post" modelAttribute="donation">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
                 <c:forEach items="${categories}" var="category">
                     <div class="form-group form-group--checkbox">
                         <label>
-                            <form:checkbox path="categories" value="${category.id}" cssClass="form-group--checkbox"/>
+                            <form:checkbox path="categories" id="categoryId" value="${category.id}" cssClass="form-group--checkbox"/>
                             <span class="checkbox"></span>
                             <span class="description">${category.name}</span>
                         </label>
@@ -63,7 +63,7 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <form:input path="quantity"/>
+                        <form:input path="quantity" id="quantityId"/>
                     </label>
                 </div>
 
@@ -80,7 +80,7 @@
                 <div class="form-group form-group--checkbox">
                     <c:forEach items="${institutions}" var="institution">
                         <label>
-                            <form:radiobutton path="institution" value="${institution.id}"/>
+                            <form:radiobutton path="institution" value="${institution.id}" id="institutionId"/>
                             <span class="checkbox radio"></span>
                             <span class="description">
                         <div class="title">${institution.name}</div>
@@ -139,7 +139,7 @@
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
-                                <form:textarea path="pickUpComment" rows="5"/>
+                                <form:textarea path="pickUpComment" rows="5" id="pickUpCommentId"/>
                             </label>
                         </div>
                     </div>
@@ -167,9 +167,9 @@
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text"
-                                >Dla fundacji "Mam marzenie" w Warszawie</span
-                                >
+                                <span class="summary--text">
+                                    Dla fundacji "Mam marzenie" w Warszawie
+                                </span>
                             </li>
                         </ul>
                     </div>

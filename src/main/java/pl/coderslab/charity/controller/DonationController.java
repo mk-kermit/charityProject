@@ -12,6 +12,7 @@ import pl.coderslab.charity.domain.Category;
 import pl.coderslab.charity.domain.Donation;
 import pl.coderslab.charity.domain.Institution;
 import pl.coderslab.charity.repository.CategoryRepository;
+import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
 
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.List;
 public class DonationController {
     InstitutionRepository institutionRepository;
     CategoryRepository categoryRepository;
+    DonationRepository donationRepository;
 
     @ModelAttribute(name = "institutions")
     public List<Institution> allInstitutions() {
@@ -40,8 +42,8 @@ public class DonationController {
     }
 
     @PostMapping("/form")
-    public String processForm(Model model){
-
+    public String processForm(@ModelAttribute Donation donation){
+        donationRepository.save(donation);
         return "form-confirmation";
     }
 }
