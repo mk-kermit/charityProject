@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
          */
         updateForm() {
             this.$step.innerText = this.currentStep;
-            var donationForm = document.querySelector("form");
+
             // TODO: Validation
 
             this.slides.forEach(slide => {
@@ -163,31 +163,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
             this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
             this.$step.parentElement.hidden = this.currentStep >= 5;
-
-            // TODO: get data from inputs and show them in summary
-
-            var toRemove = document.getElementsByName("_categories")
+            var toRemove = document.getElementsByName("_categories");
             for (var i = toRemove.length - 1; i >= 0; i--) {
                 toRemove[i].parentNode.removeChild(toRemove[i]);
             }
+            // TODO: get data from inputs and show them in summary
+            document.querySelector("div[data-step=\"4\"] div.form-group--buttons #sendData").addEventListener("click", function () {
+                var category = document.querySelectorAll("input[name=categories]").forEach(e => {
+                    if (e.checked) {
+                        document.querySelector('span.bagSummary').innerText =  e.innerText;
+                    }
+                });
 
-            document.getElementById("categoryId").innerText = "";
-            document.querySelectorAll("div[data-step=\"1\"] div.form-group--checkbox label input").forEach(function (item) {
-                if (item.checked) {
-                    var text = item.parentElement.querySelector("span.description").innerText;
-                    document.getElementById("categoryId").innerText = document.getElementById("categoryId").innerText + text + " ";
+                var quantity = document.getElementById("quantityId").value;
+                if (quantity == 1) {
+                    document.querySelector('span.bagSummary').innerText = quantity + ' worek: ' + category.join(', ');
+                } else if (quantity > 1 && quantity < 5) {
+                    document.querySelector('span.bagSummary').innerText = quantity + ' worki: ';
+                } else if (quantity >= 5) {
+                    document.querySelector('span.bagSummary').innerText = quantity + ' worków: ';
                 }
-            });
-            document.querySelector("#quantityId").innerText = donationForm.elements["quantity"].value;
-            document.querySelector("#institutionId");
-            document.getElementById("institutionId").innerText = document.getElementById("pickUpComment").value;
+
+                document.querySelector('span.institutionSummary').innerText = "Dla fundacji:" + document.getElementById("institutionTitleId").innerText + ", " + document.getElementById("institutionDescId").innerText;
+                document.querySelector('li.streetSummary').innerText = document.getElementById("streetId").value;
+                document.querySelector('li.citySummary').innerText = document.getElementById("cityId").value;
+                document.querySelector('li.zipCodeSummary').innerText = document.getElementById("zipCodeId").value;
+                document.querySelector('li.phoneNumberSummary').innerText = document.getElementById("phoneNumberId").value;
+                document.querySelector('li.pickUpDateSummary').innerText = document.getElementById("pickUpDateId").value;
+                document.querySelector('li.pickUpTimeSummary').innerText = document.getElementById("pickUpTimeId").value;
+                document.querySelector('li.pickUpCommentSummary').innerText = document.getElementById("pickUpCommentId").value;
+
+            })
         }
+
+
     }
 
     const form = document.querySelector(".form--steps");
     if (form !== null) {
         new FormSteps(form);
     }
-
-
 });

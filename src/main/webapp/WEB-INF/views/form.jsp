@@ -45,7 +45,8 @@
                 <c:forEach items="${categories}" var="category">
                     <div class="form-group form-group--checkbox">
                         <label>
-                            <form:checkbox path="categories" id="categoryId" value="${category.id}" cssClass="form-group--checkbox"/>
+                            <form:checkbox path="categories" id="categoryId" value="${category.id}"
+                                           cssClass="form-group--checkbox"/>
                             <span class="checkbox"></span>
                             <span class="description">${category.name}</span>
                         </label>
@@ -83,10 +84,12 @@
                             <form:radiobutton path="institution" value="${institution.id}" id="institutionId"/>
                             <span class="checkbox radio"></span>
                             <span class="description">
-                        <div class="title">${institution.name}</div>
-                            <div class="subtitle">
-                                    ${institution.description}
+                            <div class="title" id="institutionTitleId">
+                                    ${institution.name}
                             </div>
+                                <div class="subtitle" id="institutionDescId">
+                                        ${institution.description}
+                                </div>
                         </span>
                         </label>
                     </c:forEach>
@@ -106,22 +109,22 @@
                     <div class="form-section--column">
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Ulica <form:input path="street"/> </label>
+                            <label> Ulica <form:input path="street" id="streetId"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Miasto <form:input path="city"/> </label>
+                            <label> Miasto <form:input path="city" id="cityId"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <form:input path="zipCode"/>
+                                Kod pocztowy <form:input path="zipCode" id="zipCodeId"/>
                             </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <form:input path="phoneNumber"/>
+                                Numer telefonu <form:input path="phoneNumber" id="phoneNumberId"/>
                             </label>
                         </div>
                     </div>
@@ -129,11 +132,11 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <form:input path="pickUpDate" type="date"/> </label>
+                            <label> Data <form:input path="pickUpDate" type="date" id="pickUpDateId"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <form:input path="pickUpTime" type="time"/> </label>
+                            <label> Godzina <form:input path="pickUpTime" type="time" id="pickUpTimeId"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
@@ -146,7 +149,7 @@
                 </div>
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" class="btn next-step" id="sendData">Dalej</button>
                 </div>
             </div>
 
@@ -160,16 +163,12 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text">
-                                    4 worki ubrań w dobrym stanie dla dzieci
-                                </span>
+                                <span class="bagSummary"></span>
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text">
-                                    Dla fundacji "Mam marzenie" w Warszawie
-                                </span>
+                                <span class="institutionSummary"></span>
                             </li>
                         </ul>
                     </div>
@@ -178,19 +177,19 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li>Prosta 51</li>
-                                <li>Warszawa</li>
-                                <li>99-098</li>
-                                <li>123 456 789</li>
+                                <li class="streetSummary"></li>
+                                <li class="citySummary"></li>
+                                <li class="zipCodeSummary"></li>
+                                <li class="phoneNumberSummary"></li>
                             </ul>
                         </div>
 
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li>13/12/2018</li>
-                                <li>15:40</li>
-                                <li>Brak uwag</li>
+                                <li class="pickUpDateSummary"></li>
+                                <li class="pickUpTimeSummary"></li>
+                                <li class="pickUpCommentSummary"></li>
                             </ul>
                         </div>
                     </div>

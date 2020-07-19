@@ -22,13 +22,13 @@ public class Institution {
     Long id;
 
     @Column(name = "institution_name")
-    @NotNull(groups = {AddValidator.class, EditValidator.class})
-    @NotEmpty(groups = {AddValidator.class, EditValidator.class})
+//    @NotNull(groups = {AddValidator.class, EditValidator.class})
+//    @NotEmpty(groups = {AddValidator.class, EditValidator.class})
     String name;
 
     @Column(name = "institution_description")
-    @NotNull(groups = {AddValidator.class, EditValidator.class})
-    @NotEmpty(groups = {AddValidator.class, EditValidator.class})
+//    @NotNull(groups = {AddValidator.class, EditValidator.class})
+//    @NotEmpty(groups = {AddValidator.class, EditValidator.class})
     String description;
 
 }
