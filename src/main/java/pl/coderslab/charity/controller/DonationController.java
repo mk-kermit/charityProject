@@ -2,6 +2,8 @@ package pl.coderslab.charity.controller;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,12 +20,19 @@ import pl.coderslab.charity.repository.InstitutionRepository;
 import java.util.List;
 
 @Controller
-@AllArgsConstructor
+@Data
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DonationController {
     InstitutionRepository institutionRepository;
     CategoryRepository categoryRepository;
     DonationRepository donationRepository;
+
+    public DonationController(InstitutionRepository institutionRepository, CategoryRepository categoryRepository, DonationRepository donationRepository) {
+        this.institutionRepository = institutionRepository;
+        this.categoryRepository = categoryRepository;
+        this.donationRepository = donationRepository;
+    }
 
     @ModelAttribute(name = "institutions")
     public List<Institution> allInstitutions() {
