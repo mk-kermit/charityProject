@@ -31,7 +31,7 @@ public class Donation {
     @Column(name = "donation_quantity")
 //    @NotEmpty(groups = {AddValidator.class, EditValidator.class})
 //    @NotNull(groups = {AddValidator.class, EditValidator.class})
-            int quantity;
+            Integer quantity;
 
     @Column(name = "donation_street")
 //    @NotEmpty(groups = {AddValidator.class, EditValidator.class})
@@ -67,9 +67,9 @@ public class Donation {
     @Column(name = "donation_phone_number")
     String phoneNumber;
 
-    @ManyToOne
+    @ManyToOne(fetch= FetchType.EAGER)
     Institution institution;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     List<Category> categories = new ArrayList<>();
 }

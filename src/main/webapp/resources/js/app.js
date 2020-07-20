@@ -173,12 +173,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.querySelectorAll("div[data-step=\"1\"] div.form-group--checkbox label input").forEach(function (item) {
                     if (item.checked) {
                         var text = item.parentElement.querySelector("span.description").innerText;
-                        var id = item.parentElement.querySelector("input").value;
                         categories.push(text);
                     }
                 });
 
-                document.querySelector('span.bagSummary').innerText = "Ilość worków: " + document.getElementById('quantityId').value + " o zawartości: " + categories;
+                document.querySelector('span.bagSummary').innerText = "Ilość worków: " + document.getElementById('quantityId').value + " o zawartości: " + categories.join(", ");
                 document.querySelector('span.institutionSummary').innerText = "Dla fundacji:" + document.getElementById("institutionTitleId").innerText + ", " + document.getElementById("institutionDescId").innerText;
                 document.querySelector('li.streetSummary').innerText = document.getElementById("streetId").value;
                 document.querySelector('li.citySummary').innerText = document.getElementById("cityId").value;
