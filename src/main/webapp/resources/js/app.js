@@ -169,21 +169,16 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             // TODO: get data from inputs and show them in summary
             document.querySelector("div[data-step=\"4\"] div.form-group--buttons #sendData").addEventListener("click", function () {
-                var category = document.querySelectorAll("input[name=categories]").forEach(e => {
-                    if (e.checked) {
-                        document.querySelector('span.bagSummary').innerText =  e.innerText;
+                var categories = [];
+                document.querySelectorAll("div[data-step=\"1\"] div.form-group--checkbox label input").forEach(function (item) {
+                    if (item.checked) {
+                        var text = item.parentElement.querySelector("span.description").innerText;
+                        var id = item.parentElement.querySelector("input").value;
+                        categories.push(text);
                     }
                 });
 
-                var quantity = document.getElementById("quantityId").value;
-                if (quantity == 1) {
-                    document.querySelector('span.bagSummary').innerText = quantity + ' worek: ' + category.join(', ');
-                } else if (quantity > 1 && quantity < 5) {
-                    document.querySelector('span.bagSummary').innerText = quantity + ' worki: ';
-                } else if (quantity >= 5) {
-                    document.querySelector('span.bagSummary').innerText = quantity + ' worków: ';
-                }
-
+                document.querySelector('span.bagSummary').innerText = "Ilość worków: " + document.getElementById('quantityId').value + " o zawartości: " + categories;
                 document.querySelector('span.institutionSummary').innerText = "Dla fundacji:" + document.getElementById("institutionTitleId").innerText + ", " + document.getElementById("institutionDescId").innerText;
                 document.querySelector('li.streetSummary').innerText = document.getElementById("streetId").value;
                 document.querySelector('li.citySummary').innerText = document.getElementById("cityId").value;
